@@ -12,8 +12,7 @@ import time
 import urllib
 
 contatos = [
-    {"nome": "nome1", "numero": "numero1"},
-    # {"nome": "nome2", "numero": "numero2"},
+    {"numero": "numero2", "cidade": "cidade2", "nome": "nome2"},
     # Adicione mais pares nome-número conforme necessário
 ]
 
@@ -36,9 +35,10 @@ while len(navegador.find_elements(By.ID, "side")) < 1:
 for contato in contatos:
     nome = contato["nome"]
     numero = contato["numero"]
+    cidade = contato["cidade"]
 
     for mensagem in mensagens:
-        texto = urllib.parse.quote(mensagem.format(nome=nome))
+        texto = urllib.parse.quote(mensagem.format(nome=nome, cidade=cidade))
         link = f"https://web.whatsapp.com/send?phone={numero}&text={texto}"
         navegador.get(link)
 
